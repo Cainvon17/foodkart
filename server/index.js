@@ -13,7 +13,7 @@ app.post('/login', (req, res) => {
     // Check ADMIN table (Use $1, $2)
     const adminSql = "SELECT * FROM users WHERE username = $1 AND password = $2";
     
-    db.query(adminSql, [username, password], (err, adminResult) => {
+    pool.query(adminSql, [username, password], (err, adminResult) => {
         if (err) return res.json({ success: false, message: "DB Error" });
 
         const adminRows = adminResult.rows || adminResult; 
@@ -23,7 +23,7 @@ app.post('/login', (req, res) => {
         } else {
             const userSql = "SELECT * FROM login WHERE username = $1 AND password = $2";
             
-            db.query(userSql, [username, password], (err, userResult) => {
+            pool.query(userSql, [username, password], (err, userResult) => {
                 if (err) return res.json({ success: false, message: "DB Error" });
                 
                 const userRows = userResult.rows || userResult;
@@ -49,7 +49,7 @@ app.post('/register', (req, res) => {
     ];
 
     // 3. Execute
-    db.query(sql, values, (err, result) => {
+    pool.query(sql, values, (err, result) => {
         if (err) {
             console.error("Postgres Error:", err);
             return res.json({ success: false, message: "Error registering" });
@@ -127,7 +127,7 @@ app.post('/login', (req, res) => {
         } else {
             const userSql = "SELECT * FROM login WHERE username = ? AND password = ?";
             
-            db.query(userSql, [sentUsername, sentPassword], (err, userData) => {
+            pool.query(userSql, [sentUsername, sentPassword], (err, userData) => {
                 if (err) return res.json({ success: false, message: "Database Error" });
 
                 if (userData.length > 0) {

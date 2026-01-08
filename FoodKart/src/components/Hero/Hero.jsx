@@ -54,7 +54,7 @@ export default function Home() {
   const filteredMenu = activeCategory === "All"? menu : menu.filter(item => item.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50 pb-20">
+    <div className="min-h-screen bg-linear-to-br from-orange-50 to-yellow-50 pb-20">
       <Toaster position="top-center" />
 
       {/* --- NAVBAR --- */}
