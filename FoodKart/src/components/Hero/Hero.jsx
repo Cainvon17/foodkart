@@ -93,7 +93,7 @@ export default function Home() {
         </div>
 
         {/* --- MENU GRID --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
           {filteredMenu.map((item) => (
             <div key={item.id} className="card w-full bg-base-100 shadow-xl hover:shadow-2xl transition-all">
               <figure className="h-48 overflow-hidden">
