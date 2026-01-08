@@ -20,22 +20,35 @@ export default function Login() {
 
       if (res.data.success) {
         toast.success("Login Successful!");
-        localStorage.setItem("user", "admin");
+        
+        // 1. Store the role sent from backend ('admin' or 'user')
+        localStorage.setItem("user", res.data.role);
+
+        // 2. Redirect based on role
         setTimeout(() => {
-          navigate('/admin');
+          if (res.data.role === 'admin') {
+            navigate('/admin'); // Admin Panel
+          } else {
+            navigate('/');      // Home Page for normal users
+          }
         }, 1000);
+        
+      } else {
+        toast.error("Invalid Username or Password");
       }
     } catch (err) {
-      toast.error("Invalid Username or Password");
+      toast.error("Server Error");
     }
   };
+
+    
 
   return (
     <div className="flex justify-center items-center h-screen bg-base-200">
       <Toaster />
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title justify-center mb-4">🔐 Admin Login</h2>
+          <h2 className="card-title justify-center mb-4">🔐Login</h2>
           
           <form onSubmit={handleLogin}>
             {/* Username Input */}

@@ -5,7 +5,7 @@ import Home from './components/Hero/Hero';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
 import RequireAuth from './pages/RequireAuth';
-
+import Signup from './pages/SignUp';
 const App = () => {
   return (
     <BrowserRouter>
@@ -20,7 +20,7 @@ const App = () => {
             </RequireAuth>
             
             } />
-          
+          <Route path="/register" element={<Signup />} />
         </Routes>
       </div>
     </BrowserRouter>
