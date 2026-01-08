@@ -1,14 +1,20 @@
-import React from 'react'
-import Navbar from './components/Navbar/Navbar'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Home from './components/Hero/Hero'; 
+import Admin from './pages/Admin';
+
 const App = () => {
   return (
-    <div className='App'>
-      <Navbar />
-      <h1 className="text-4xl font-bold text-red-500">
-        Tailwind v4 Works
-      </h1>
-    </div>
-  )
-}
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
